@@ -5,7 +5,6 @@ import { VscArrowLeft, VscCalendar, VscLocation, VscMail, VscGlobe, VscCode, Vsc
 import { FaGraduationCap, FaAward, FaHeart, FaLightbulb } from 'react-icons/fa';
 import Link from 'next/link';
 import ScrollProgress from '../components/ScrollProgress';
-import ThemeToggle from '../components/ThemeToggle';
 import ParticleSystem from '../components/ParticleSystem';
 import MobileOptimizations from '../components/MobileOptimizations';
 
@@ -31,7 +30,6 @@ export default function AboutPage() {
     return (
         <>
             <ScrollProgress />
-            <ThemeToggle />
             <MobileOptimizations />
             
             <div className="relative min-h-screen bg-black">

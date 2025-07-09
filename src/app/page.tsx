@@ -4,11 +4,11 @@ import { projects } from '@/lib/data/projects'
 import { personalData } from '@/lib/data/personal'
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Ballpit from './components/Ballpit';
+// import Ballpit from './components/Ballpit';
 import TypingAnimation from './components/TypingAnimation';
 import SkillBar from './components/SkillBar';
 import ScrollProgress from './components/ScrollProgress';
-import ThemeToggle from './components/ThemeToggle';
+
 import FloatingNav from './components/FloatingNav';
 import ParticleSystem from './components/ParticleSystem';
 import ContactForm from './components/ContactForm';
@@ -16,7 +16,8 @@ import PerformanceMonitor from './components/PerformanceMonitor';
 import TestimonialsSection from './components/TestimonialsSection';
 import MobileOptimizations from './components/MobileOptimizations';
 import WelcomeToast from './components/WelcomeToast';
-import { VscAccount, VscMail, VscArchive } from 'react-icons/vsc';
+import { VscAccount, VscMail, VscArchive, VscCalendar, VscGlobe, VscCode } from 'react-icons/vsc';
+import { VscGithub } from 'react-icons/vsc';
 import { useState } from "react";
 import Preloader from "./components/Preloader";
 import { AnimatePresence, motion } from "framer-motion";
@@ -43,6 +44,7 @@ const experiences = [
 		period: "2023 – Present",
 		description:
 			"Developing and maintaining modern web applications using the MERN stack, Next.js, and TypeScript. Collaborating with cross-functional teams to deliver scalable, high-performance solutions for diverse client requirements.",
+		technologies: ["React", "Node.js", "MongoDB", "TypeScript", "Next.js", "Express.js"]
 	},
 	{
 		role: "IoT Developer",
@@ -50,6 +52,7 @@ const experiences = [
 		period: "2022 – Present",
 		description:
 			"Designing and implementing IoT solutions using Arduino and ESP32 microcontrollers. Creating smart home automation systems, sensor networks, and real-time monitoring applications with wireless connectivity.",
+		technologies: ["Arduino", "ESP32", "C++", "Python", "MQTT", "WiFi"]
 	},
 	{
 		role: "Frontend Developer Intern",
@@ -57,6 +60,7 @@ const experiences = [
 		period: "2022 – 2023",
 		description:
 			"Developed responsive web interfaces using React and modern CSS frameworks. Optimized website performance, implemented user-friendly designs, and collaborated with backend teams for seamless integration.",
+		technologies: ["React", "JavaScript", "CSS3", "HTML5", "Tailwind CSS", "Git"]
 	},
 	{
 		role: "Open Source Contributor",
@@ -64,6 +68,7 @@ const experiences = [
 		period: "2021 – Present",
 		description:
 			"Actively contributing to open-source projects, focusing on web development tools and IoT libraries. Participating in code reviews, bug fixes, and feature enhancements to support the developer community.",
+		technologies: ["JavaScript", "Python", "Git", "GitHub Actions", "Documentation", "Testing"]
 	},
 ];
 
@@ -92,7 +97,6 @@ export default function Home() {
     return (
         <>
             <ScrollProgress />
-            <ThemeToggle />
             <FloatingNav />
             <PerformanceMonitor />
             <MobileOptimizations />
@@ -115,7 +119,7 @@ export default function Home() {
                       <SocialMedia />
                     </div>
 
-                    {/* Ballpit background */}
+                    {/* Ballpit background
                     <div style={{
                         position: 'fixed',
                         inset: 0,
@@ -133,7 +137,7 @@ export default function Home() {
                             followCursor={false}
                             style={{ width: '100vw', height: '100vh' }}
                         />
-                    </div>
+                    </div> */}
 
                     <main className="relative z-10 min-h-screen px-2 md:px-8 py-16">
                         {/* Hero Section */}
@@ -176,13 +180,6 @@ export default function Home() {
                             <p className="text-lg md:text-xl text-neutral-300 text-center md:text-left max-w-2xl mb-8">
                                 Passionate about creating innovative solutions with modern web technologies and embedded systems.
                             </p>
-                            <button
-                                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                                className="inline-flex items-center gap-2 border border-blue-400 text-blue-400 px-8 py-3 rounded-full hover:bg-blue-400 hover:text-white transition-all duration-300 font-semibold text-lg focus:outline-none focus:ring-4 focus:ring-blue-400/40 mt-4"
-                            >
-                                <VscMail size={22} />
-                                Get In Touch
-                            </button>
                           </div>
                         </motion.section>
 
@@ -239,107 +236,223 @@ export default function Home() {
 
                         {/* Experience Section */}
                         <motion.section
-                            className="max-w-3xl mx-auto mb-16 bg-neutral-900/30 backdrop-blur-sm border border-neutral-800/50 rounded-2xl shadow-xl p-10 transition-all duration-300"
+                            className="max-w-5xl mx-auto mb-16"
                             variants={sectionVariant}
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true, amount: 0.3 }}
                         >
-                            <h2 className="text-3xl font-bold mb-8 text-blue-400 flex items-center gap-2">
-                                <VscArchive size={28} /> Experience
-                            </h2>
-                            <div className="overflow-x-auto">
-                                <motion.div
-                                    className="flex gap-8"
-                                    drag="x"
-                                    dragConstraints={{ left: -320 * (experiences.length - 1), right: 0 }}
-                                    whileTap={{ cursor: "grabbing" }}
-                                    style={{ cursor: "grab" }}
-                                >
+                            <div className="text-center mb-12">
+                                <h2 className="text-4xl font-bold text-white mb-4">
+                                    Professional <span className="text-blue-400">Experience</span>
+                                </h2>
+                                <p className="text-neutral-300 text-lg max-w-2xl mx-auto">
+                                    My journey through various roles and projects that have shaped my expertise
+                                </p>
+                            </div>
+
+                            <div className="relative">
+                                {/* Timeline line */}
+                                <div className="absolute left-8 md:left-1/2 transform md:-translate-x-0.5 w-0.5 h-full bg-gradient-to-b from-blue-400 via-blue-500 to-transparent"></div>
+
+                                <div className="space-y-12">
                                     {experiences.map((exp, idx) => (
                                         <motion.div
                                             key={idx}
-                                            className="min-w-[320px] max-w-xs min-h-[260px] bg-blue-900/20 rounded-xl p-6 border border-blue-400/20 shadow hover:shadow-lg hover:scale-[1.03] transition-all duration-300 flex-shrink-0"
-                                            whileHover={{ scale: 1.05, boxShadow: "0 8px 32px 0 rgba(0, 123, 255, 0.25)" }}
+                                            className={`relative flex items-center ${idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+                                            initial={{ opacity: 0, x: idx % 2 === 0 ? -50 : 50 }}
+                                            whileInView={{ opacity: 1, x: 0 }}
+                                            transition={{ duration: 0.6, delay: idx * 0.2 }}
+                                            viewport={{ once: true }}
                                         >
-                                            <h3 className="text-xl font-bold text-blue-200">
-                                                {exp.role} <span className="font-normal text-blue-400">@ {exp.company}</span>
-                                            </h3>
-                                            <p className="text-sm text-blue-300">{exp.period}</p>
-                                            <p className="mt-2 text-neutral-200">{exp.description}</p>
+                                            {/* Timeline dot */}
+                                            <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-400 rounded-full border-4 border-black shadow-lg z-10"></div>
+
+                                            {/* Content card */}
+                                            <div className={`w-full md:w-5/12 ml-16 md:ml-0 ${idx % 2 === 0 ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'}`}>
+                                                <motion.div
+                                                    className="bg-gradient-to-br from-neutral-900/80 to-neutral-800/60 backdrop-blur-sm border border-neutral-700/50 rounded-2xl p-8 shadow-2xl hover:shadow-blue-400/10 transition-all duration-300"
+                                                    whileHover={{ scale: 1.02, y: -5 }}
+                                                >
+                                                    {/* Company badge */}
+                                                    <div className="flex items-center justify-center gap-3 mb-4">
+                                                        <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                                                            <VscArchive className="text-white" size={24} />
+                                                        </div>
+                                                        <div className="text-center">
+                                                            <h3 className="text-xl font-bold text-white">{exp.role}</h3>
+                                                            <p className="text-blue-400 font-semibold">{exp.company}</p>
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Period */}
+                                                    <div className="flex justify-center mb-4">
+                                                        <div className="inline-flex items-center gap-2 bg-blue-900/30 text-blue-300 px-3 py-1 rounded-full text-sm font-medium">
+                                                            <VscCalendar size={14} />
+                                                            {exp.period}
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Description */}
+                                                    <p className="text-neutral-200 leading-relaxed mb-4 text-center">{exp.description}</p>
+
+                                                    {/* Skills/Technologies */}
+                                                    <div className="flex flex-wrap gap-2">
+                                                        {exp.technologies?.map((tech, techIdx) => (
+                                                            <span
+                                                                key={techIdx}
+                                                                className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs font-medium border border-blue-500/30"
+                                                            >
+                                                                {tech}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                </motion.div>
+                                            </div>
                                         </motion.div>
                                     ))}
-                                </motion.div>
-                                <div className="text-center text-xs text-blue-300 mt-4">Swipe or drag to see more</div>
+                                </div>
                             </div>
                         </motion.section>
 
                         {/* Projects Section */}
                         <motion.section
                             id="projects"
-                            className="max-w-6xl mx-auto mb-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+                            className="max-w-7xl mx-auto mb-16"
                             variants={sectionVariant}
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true, amount: 0.2 }}
                         >
-                            {projects.map((project, i) => (
-                                <div
-                                    key={i}
-                                    className="group bg-neutral-900/40 backdrop-blur-sm border border-neutral-800/50 rounded-2xl shadow-xl p-6 flex flex-col transition-transform duration-300 hover:scale-[1.02] hover:shadow-blue-400/20 relative overflow-hidden"
+                            {/* Section Header */}
+                            <div className="text-center mb-16">
+                                <motion.div
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.6 }}
+                                    viewport={{ once: true }}
                                 >
-                                    {/* Project image */}
-                                    {project.image && (
-                                        <img
-                                            src={project.image}
-                                            alt={project.title}
-                                            className="rounded-lg mb-4 w-full h-40 object-cover border border-neutral-800 group-hover:opacity-90 transition"
-                                        />
-                                    )}
+                                    <h2 className="text-5xl font-bold text-white mb-6">
+                                        Featured <span className="text-blue-400">Projects</span>
+                                    </h2>
+                                    <p className="text-neutral-300 text-xl max-w-3xl mx-auto leading-relaxed">
+                                        A showcase of my latest work, demonstrating expertise in full-stack development,
+                                        IoT solutions, and modern web technologies
+                                    </p>
+                                    <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-blue-600 mx-auto mt-6 rounded-full"></div>
+                                </motion.div>
+                            </div>
 
-                                    {/* Title & Description */}
-                                    <h3 className="text-xl font-bold text-blue-300 mb-2">{project.title}</h3>
-                                    <p className="text-neutral-300 mb-4">{project.description}</p>
+                            {/* Projects Grid */}
+                            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                                {projects.map((project, i) => (
+                                    <motion.div
+                                        key={i}
+                                        initial={{ opacity: 0, y: 50 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.6, delay: i * 0.1 }}
+                                        viewport={{ once: true }}
+                                        className="group relative"
+                                    >
+                                        <div className="bg-gradient-to-br from-neutral-900/90 to-neutral-800/70 backdrop-blur-sm border border-neutral-700/50 rounded-3xl shadow-2xl overflow-hidden transition-all duration-500 hover:shadow-blue-400/20 hover:border-blue-400/30 hover:-translate-y-2">
+                                            {/* Project Image with Overlay */}
+                                            <div className="relative overflow-hidden">
+                                                {project.image && (
+                                                    <img
+                                                        src={project.image}
+                                                        alt={project.title}
+                                                        className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                                                    />
+                                                )}
+                                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-                                    {/* Tech stack */}
-                                    {project.tech && (
-                                        <div className="flex flex-wrap gap-2 mb-4">
-                                            {project.tech.map((tech: string, idx: number) => (
-                                                <span
-                                                    key={idx}
-                                                    className="bg-blue-800/40 text-blue-200 px-3 py-1 rounded-full text-xs font-semibold"
-                                                >
-                                                    {tech}
-                                                </span>
-                                            ))}
+                                                {/* Floating Action Buttons */}
+                                                <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                                                    {project.demo && (
+                                                        <a
+                                                            href={project.demo}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="w-10 h-10 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center text-white shadow-lg transition-all duration-300 hover:scale-110"
+                                                            title="Live Demo"
+                                                        >
+                                                            <VscGlobe size={18} />
+                                                        </a>
+                                                    )}
+                                                    {project.github && (
+                                                        <a
+                                                            href={project.github}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="w-10 h-10 bg-neutral-800 hover:bg-neutral-700 rounded-full flex items-center justify-center text-white shadow-lg transition-all duration-300 hover:scale-110"
+                                                            title="GitHub Repository"
+                                                        >
+                                                            <VscGithub size={18} />
+                                                        </a>
+                                                    )}
+                                                </div>
+                                            </div>
+
+                                            {/* Content */}
+                                            <div className="p-8">
+                                                {/* Project Category Badge */}
+                                                <div className="inline-flex items-center gap-2 bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-xs font-medium mb-4 border border-blue-500/30">
+                                                    <VscCode size={12} />
+                                                    Web Development
+                                                </div>
+
+                                                {/* Title & Description */}
+                                                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-blue-300 transition-colors duration-300">
+                                                    {project.title}
+                                                </h3>
+                                                <p className="text-neutral-300 mb-6 leading-relaxed line-clamp-3">
+                                                    {project.description}
+                                                </p>
+
+                                                {/* Tech Stack */}
+                                                {project.tech && (
+                                                    <div className="flex flex-wrap gap-2 mb-6">
+                                                        {project.tech.map((tech: string, idx: number) => (
+                                                            <span
+                                                                key={idx}
+                                                                className="px-3 py-1 bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-200 rounded-full text-xs font-medium border border-blue-500/20 hover:border-blue-400/40 transition-colors duration-300"
+                                                            >
+                                                                {tech}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                )}
+
+                                                {/* Action Buttons */}
+                                                <div className="flex gap-3">
+                                                    {project.demo && (
+                                                        <a
+                                                            href={project.demo}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold text-sm shadow-lg hover:from-blue-700 hover:to-blue-600 transition-all duration-300 hover:shadow-blue-400/30 hover:scale-105"
+                                                        >
+                                                            <VscGlobe size={16} />
+                                                            Live Demo
+                                                        </a>
+                                                    )}
+                                                    {project.github && (
+                                                        <a
+                                                            href={project.github}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-blue-400/50 text-blue-300 font-semibold text-sm hover:bg-blue-400/10 hover:border-blue-400 transition-all duration-300 hover:scale-105"
+                                                        >
+                                                            <VscGithub size={16} />
+                                                            Code
+                                                        </a>
+                                                    )}
+                                                </div>
+                                            </div>
                                         </div>
-                                    )}
-
-                                    {/* Links */}
-                                    <div className="mt-auto flex gap-3">
-                                        {project.demo && (
-                                            <a
-                                                href={project.demo}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="inline-block px-4 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-blue-400 text-white font-semibold text-sm shadow hover:from-blue-700 hover:to-blue-500 transition"
-                                            >
-                                                Live Demo
-                                            </a>
-                                        )}
-                                        {project.github && (
-                                            <a
-                                                href={project.github}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="inline-block px-4 py-2 rounded-lg border border-blue-400 text-blue-300 font-semibold text-sm hover:bg-blue-900/30 transition"
-                                            >
-                                                GitHub
-                                            </a>
-                                        )}
-                                    </div>
-                                </div>
-                            ))}
+                                    </motion.div>
+                                ))}
+                            </div>
                         </motion.section>
 
                         {/* Testimonials Section */}

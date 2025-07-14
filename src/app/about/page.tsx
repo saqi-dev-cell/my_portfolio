@@ -2,8 +2,9 @@
 
 import { motion } from 'framer-motion';
 import { VscArrowLeft, VscCalendar, VscLocation, VscMail, VscGlobe, VscCode, VscGear, VscRocket } from 'react-icons/vsc';
-import { FaGraduationCap, FaAward, FaHeart, FaLightbulb } from 'react-icons/fa';
+import { FaGraduationCap, FaHeart, FaLightbulb } from 'react-icons/fa';
 import Link from 'next/link';
+import Image from 'next/image';
 import ScrollProgress from '../components/ScrollProgress';
 import ParticleSystem from '../components/ParticleSystem';
 import MobileOptimizations from '../components/MobileOptimizations';
@@ -81,9 +82,11 @@ export default function AboutPage() {
                     >
                         <div className="grid md:grid-cols-2 gap-12 items-center">
                             <div>
-                                <img
+                                <Image
                                     src="/profile.jpeg"
                                     alt="Saqlain Kharal"
+                                    width={256}
+                                    height={256}
                                     className="w-64 h-64 rounded-2xl object-cover border-4 border-blue-400 shadow-lg mx-auto"
                                 />
                             </div>
@@ -222,7 +225,7 @@ export default function AboutPage() {
                             >
                                 <VscRocket className="text-purple-400 text-4xl mx-auto mb-4" />
                                 <h3 className="text-xl font-semibold text-purple-300 mb-3">Innovation</h3>
-                                <p className="text-neutral-300">Pushing boundaries and exploring new technologies to create solutions for tomorrow's challenges.</p>
+                                <p className="text-neutral-300">Pushing boundaries and exploring new technologies to create solutions for tomorrow&apos;s challenges.</p>
                             </motion.div>
                         </div>
                     </motion.section>
@@ -235,9 +238,9 @@ export default function AboutPage() {
                         whileInView="visible"
                         viewport={{ once: true, amount: 0.3 }}
                     >
-                        <h2 className="text-3xl font-bold text-white mb-6">Let's Build Something Amazing Together</h2>
+                        <h2 className="text-3xl font-bold text-white mb-6">Let&apos;s Build Something Amazing Together</h2>
                         <p className="text-xl text-neutral-300 mb-8 max-w-2xl mx-auto">
-                            I'm always excited to work on new projects and collaborate with fellow developers and innovators.
+                            I&apos;m always excited to work on new projects and collaborate with fellow developers and innovators.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Link
